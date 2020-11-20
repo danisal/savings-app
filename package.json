@@ -1,19 +1,27 @@
 {
   "scripts": {
-    "start": "snowpack dev",
+    "dev": "snowpack dev",
     "build": "snowpack build",
     "test": "web-test-runner \"src/**/*.test.js\""
   },
   "dependencies": {
-    "svelte": "^3.24.0"
+    "autoprefixer": "^10.0.2",
+    "postcss": "^8.1.8",
+    "postcss-import": "^13.0.0",
+    "postcss-load-config": "^3.0.0",
+    "svelte": "^3.24.0",
+    "svelte-preprocess": "^4.6.1",
+    "tailwindcss": "^2.0.1"
   },
   "devDependencies": {
+    "@snowpack/plugin-build-script": "^2.0.11",
     "@snowpack/plugin-dotenv": "^2.0.4",
     "@snowpack/plugin-svelte": "^3.3.0",
     "@snowpack/web-test-runner-plugin": "^0.1.4",
     "@testing-library/svelte": "^3.0.0",
     "@web/test-runner": "^0.9.7",
     "chai": "^4.2.0",
+    "prettier-plugin-svelte": "^1.4.1",
     "snowpack": "^2.17.1"
   }
 }

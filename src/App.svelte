@@ -1,6 +1,9 @@
 <script>
-  import {onMount} from 'svelte';
+  import Tailwindcss from './tailwind.svelte'
+  import { onMount } from 'svelte';
+
   let count = 0;
+
   onMount(() => {
     const interval = setInterval(() => count++, 1000);
     return () => {
@@ -55,8 +58,9 @@
   }
 </style>
 
-<div class="App">
-  <header class="App-header">
+<Tailwindcss/>
+<div class="App container mx-auto">
+  <header class="App-header box-border" >
     <img src="/logo.svg" class="App-logo" alt="logo" />
     <p>Edit <code>src/App.svelte</code> and save to reload.</p>
     <p>Page has been open for <code>{count}</code> seconds.</p>
