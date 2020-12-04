@@ -1,73 +1,36 @@
 <script>
   import Tailwindcss from './tailwind.svelte'
-  import { onMount } from 'svelte';
+  import Row from './row.svelte'
 
-  let count = 0;
+  const item = {name: '', quantity: 0, price: 0, perUnit: 0}
 
-  onMount(() => {
-    const interval = setInterval(() => count++, 1000);
-    return () => {
-      clearInterval(interval);
-    };
-  });
+  let rows = [
+    {id:0, name: 'Mimosa', quantity: 6, price: 3.54, perUnit: 0},
+    {id: 1, name: 'Terra Nostra', quantity: 6, price: 4.62, perUnit: 0},
+    {id: 2, name: 'Nova Açores', quantity: 6, price: 3.54, perUnit: 0},
+  ]
+
+  const handleRemoveRow = (index) => event => {
+    rows.splice(index, 1)
+    rows = rows
+  }
+
+  const handleAddRow = (event) => {
+    const lastItem = rows[rows.length - 1]
+    rows = [...rows, {id: lastItem.id + 1, ...item}];
+  }
+
 </script>
 
-<style>
-  :global(body) {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-  }
-  .App {
-    text-align: center;
-  }
-  .App code {
-    background: #0002;
-    padding: 4px 8px;
-    border-radius: 4px;
-  }
-  .App p {
-    margin: 0.4rem;
-  }
-
-  .App-header {
-    background-color: #f9f6f6;
-    color: #333;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-  }
-  .App-link {
-    color: #ff3e00;
-  }
-  .App-logo {
-    height: 36vmin;
-    pointer-events: none;
-    margin-bottom: 3rem;
-    animation: App-logo-spin infinite 1.6s ease-in-out alternate;
-  }
-  @keyframes App-logo-spin {
-    from {
-      transform: scale(1);
-    }
-    to {
-      transform: scale(1.06);
-    }
-  }
-</style>
-
 <Tailwindcss/>
-<div class="App container mx-auto">
-  <header class="App-header box-border" >
-    <img src="/logo.svg" class="App-logo" alt="logo" />
-    <p>Edit <code>src/App.svelte</code> and save to reload.</p>
-    <p>Page has been open for <code>{count}</code> seconds.</p>
-    <p>
-      <a class="App-link" href="https://svelte.dev" target="_blank" rel="noopener noreferrer">
-        Learn Svelte
-      </a>
-    </p>
-  </header>
+<div class="md:container md:mx-auto bg-gray-50">
+  <h1 class="text-xl text-center" >Savings app</h1>
+  <div class="space-y-4" >
+    {#each rows as row, index (row.id)}
+      <Row handleRemoveRow={handleRemoveRow} {...row} index={index} />
+    {/each}
+    <div class="flex">
+      <button class="bg-green-500 rounded-sm px-4 py-2" type="button" on:click={handleAddRow} >Add row</button>
+    </div>
+  </div>
 </div>
