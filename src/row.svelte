@@ -10,7 +10,7 @@
   $:pricePerUnit = price / quantity;
 </script>
 
-<div class="grid grid-cols-5 gap-4 ">
+<div class="grid grid-cols-2 gap-4 md:grid-cols-5 bg-blue-300 py-2 px-4 mx-4 rounded-md">
   <label class="block" for="name">
     Name
     <input id="name" class="w-full bg-green-100 rounded-sm p-2" type="text" placeholder="name" bind:value={name}>
